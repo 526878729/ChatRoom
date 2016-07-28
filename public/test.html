@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
+  <title>MyChat</title>
+  <script src="https://cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+  <script src="js/share.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/share.css" type="text/css"/>
+  <link rel="stylesheet" type="text/css" href="css/context.standalone.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <!--<link rel="stylesheet" href="css/snow.css">-->
+</head>
+<body>
+<div class="container">
+  <div class="wrapper" id="room">
+    <!-- 标题部分 -->
+    <div class="banner">
+      <div class="chat_icon"></div>
+      <h1 id="chat_title">HappyChat :)</h1>
+      <span id="status">SS</span>
+    </div>
+
+    <!-- 聊天内容显示框 -->
+    <div id="historyMsg">
+    </div>
+
+    <!-- 用户操作区 -->
+    <div class="controls">
+      <div class="items">
+        <!-- 字体颜色选择面板 -->
+        <input id="colorStyle" type="color" placeHolder='#000' title="font color"/>
+
+        <!-- 表情按钮 -->
+        <button class="btn btn-info" id="expressionBtn" type="button" title="expression">表情</button>
+
+        <!-- 发送图片按钮 -->
+        <label for="sendImage" class="imageLable">
+          <button class="btn btn-success" type="button">图片<input id="sendImage" type="file" value="image"></button>
+        </label>
+
+        <!-- 抖动窗口按钮 -->
+        <button class="btn" id="shake" title="shake room">抖动</button>
+
+        <!-- 聊天内容清屏按钮 -->
+        <button class="btn btn-danger" id="clearBtn" title="clear screen">清屏
+        </button>
+        <!--<div id="socialShare"></div>-->
+      </div>
+      <div class="editor">
+        <!-- 聊天内容输入区域 -->
+        <!--<textarea id="messageInput" placeHolder="Enter to send..."></textarea>-->
+        <div contenteditable="true" id="messageInput" placeHolder="Enter to send..."></div>
+        <!-- 消息发送按钮 -->
+        <button class="btn btn-primary" id="sendBtn">SEND</button>
+      </div>
+      <div id="expressionWrapper">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--连接遮罩，后显示用户名输入登录-->
+<div id="loginWrapper">
+  <p id="info">connecting to server...</p>
+
+  <div id="nickWrapper">
+    <input type="text" placeHolder="来个响亮的昵称~" id="nicknameInput"/>
+    <button class="btn btn-primary" id="loginBtn">确定</button>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/myChat.js"></script>
+<script src="js/context.js"></script>
+<!--<script type="text/javascript" src="js/ThreeCanvas.js"></script>-->
+<!--<script type="text/javascript" src="js/Snow.js"></script>-->
+<!--<script type="text/javascript" src="js/snowFall.js"></script>-->
+<script>
+  $(function () {
+
+    $("#socialShare").socialShare({
+      content: '',
+      url: '',
+      titile: ''
+    });
+
+  });
+
+  $("#shareQQ").on("click", function () {
+    $(this).socialShare("tQQ");
+  });
+
+  document.ontouchmove = function (e) {
+    e.preventDefault();
+  };
+
+  //  $.snowFall({
+  //    //创建粒子数量，密度
+  //    particleNo: 500,
+  //    //粒子下拉速度
+  //    particleSpeed:30,
+  //    //粒子在垂直（Y轴）方向运动范围
+  //    particleY_Range:1300,
+  //    //粒子在垂直（X轴）方向运动范围
+  //    particleX_Range:1000,
+  //    //是否绑定鼠标事件
+  //    bindMouse: false,
+  //    //相机离Z轴原点距离
+  //    zIndex:600,
+  //    //摄像机视野角度
+  //    angle:55,
+  //    wind_weight:0
+  //  });
+</script>
+</body>
+</html>
